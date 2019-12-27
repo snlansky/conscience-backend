@@ -15,19 +15,30 @@ type UserCenter struct {
 	PublicUrl  string `mapstructure:"public-url"`
 }
 
-type Mongo struct {
-	Uri string `mapstructure:"uri"`
-	DB  string `mapstructure:"db"`
+type Redis struct {
+	Uri      string `mapstructure:"uri"`
+	Password string `mapstructure:"password"`
+	DB       string `mapstructure:"db"`
 }
 
-type Dao struct {
+type Mysql struct {
+	DSN string `mapstructure:"dsn"`
+}
+
+type Mongo struct {
+	Uri string `mapstructure:"uri"`
+}
+
+type DB struct {
+	Redis Redis `mapstructure:"redis"`
+	Mysql Mysql `mapstructure:"mysql"`
 	Mongo Mongo `mapstructure:"mongo"`
 }
 
 type Config struct {
 	Server     Server     `mapstructure:"server"`
 	UserCenter UserCenter `mapstructure:"user-center"`
-	Dao        Dao        `mapstructure:"dao"`
+	DB         DB         `mapstructure:"db"`
 }
 
 var GlobalConfig *Config

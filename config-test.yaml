@@ -5,7 +5,7 @@ user-center:
   private-url: http://default-user-center:8090
   public-url: http://default-user-center:8080
 
-dao:
+db:
   redis:
     uri: 127.0.0.1:6379
     password: UAT1VOzR7C
