@@ -5,24 +5,23 @@ import (
 	"context"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"github.com/jmoiron/sqlx"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"
 	"time"
 )
 
-var DB *sqlx.DB
+var DB *gorm.DB
 var Mongo *mongo.Client
 
-func Init(db config.DB) (err error) {
-	Mongo, err = initMongo(db.Mongo.Uri)
-	db, err := gorm.Open("mysql", db.Mysql.DSN)
+func Init(conf config.DB) (err error) {
+	Mongo, err = initMongo(conf.Mongo.Uri)
+	DB, err = gorm.Open("mysql", conf.Mysql.DSN)
 	return
 }
 
 func Close() {
-
+	DB.Close()
 }
 
 func initMongo(uri string) (*mongo.Client, error) {

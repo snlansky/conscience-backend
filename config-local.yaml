@@ -11,7 +11,7 @@ db:
     password: UAT1VOzR7C
     db: 0
   mysql:
-    dsn: root:pPEgcZWi8q@tcp(localhost:3306)/blockchain-explorer?parseTime=true&charset=utf8mb4&loc=Hongkong
+    dsn: root:7QZKO020y1@tcp(localhost:3306)/conscience_backend?parseTime=true&charset=utf8mb4&loc=Hongkong
   mongo:
     uri: mongodb://root:4LY0Ul9yNw@127.0.0.1:27017/admin?authSource=admin
     db:
