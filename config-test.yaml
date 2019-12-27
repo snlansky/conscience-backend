@@ -1,0 +1,16 @@
+server:
+  addr: 0.0.0.0:8080
+
+user-center:
+  private-url: http://default-user-center:8090
+  public-url: http://default-user-center:8080
+
+dao:
+  redis:
+    uri: 127.0.0.1:6379
+    password: UAT1VOzR7C
+    db: 0
+  mysql:
+    dsn: root:pPEgcZWi8q@tcp(localhost:3306)/blockchain-explorer?parseTime=true&charset=utf8mb4&loc=Hongkong
+  mongo:
+    uri: mongodb://root:cMP3LuSKKk@mongo-mongodb:27017/admin?authSource=admin
