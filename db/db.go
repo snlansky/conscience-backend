@@ -3,8 +3,8 @@ package db
 import (
 	"conscience-backend/config"
 	"context"
-	"database/sql"
-	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/jmoiron/sqlx"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -14,26 +14,15 @@ import (
 
 var DB *sqlx.DB
 var Mongo *mongo.Client
-var mongoDB string
 
-type Executor interface {
-	Exec(query string, args ...interface{}) (sql.Result, error)
-}
-
-func Init(dao config.Dao) (err error) {
-	//DB = initSqlxDB(dsn, 32, 2)
-	Mongo, err = initMongo(dao.Mongo.Uri)
-	mongoDB = dao.Mongo.DB
+func Init(db config.DB) (err error) {
+	Mongo, err = initMongo(db.Mongo.Uri)
+	db, err := gorm.Open("mysql", db.Mysql.DSN)
 	return
 }
 
-func initSqlxDB(dbConfig string, maxOpen, maxIdle int) *sqlx.DB {
-	db := sqlx.MustConnect("mysql", dbConfig)
-	db.SetMaxOpenConns(maxOpen)
-	db.SetMaxIdleConns(maxIdle)
-	// https://github.com/go-sql-driver/mysql/issues/446
-	db.SetConnMaxLifetime(time.Second * 14400)
-	return db
+func Close() {
+
 }
 
 func initMongo(uri string) (*mongo.Client, error) {
@@ -48,4 +37,3 @@ func initMongo(uri string) (*mongo.Client, error) {
 	}
 	return client, nil
 }
-

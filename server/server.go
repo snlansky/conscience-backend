@@ -2,6 +2,7 @@ package server
 
 import (
 	"conscience-backend/config"
+	"conscience-backend/db"
 	"conscience-backend/http"
 	"conscience-backend/service"
 	"fmt"
@@ -23,6 +24,11 @@ func New() *Server {
 func (s *Server) initialize() {
 	config.Init()
 
+	err := db.Init(config.GlobalConfig.DB)
+	if err != nil {
+		panic(err)
+	}
+
 	service.Init()
 
 	s.http = http.New()
@@ -37,6 +43,7 @@ func (s *Server) Start() {
 		fmt.Printf("get a signal %s", sig.String())
 		switch sig {
 		case syscall.SIGQUIT, syscall.SIGTERM, syscall.SIGINT:
+
 			return
 		case syscall.SIGHUP:
 			//logger.Rotate(false)
