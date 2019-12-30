@@ -15,6 +15,10 @@ type UserCenter struct {
 	PublicUrl  string `mapstructure:"public-url"`
 }
 
+type BlockchainAPI struct {
+	Url string `mapstructure:"url"`
+}
+
 type Redis struct {
 	Uri      string `mapstructure:"uri"`
 	Password string `mapstructure:"password"`
@@ -36,9 +40,10 @@ type DB struct {
 }
 
 type Config struct {
-	Server     Server     `mapstructure:"server"`
-	UserCenter UserCenter `mapstructure:"user-center"`
-	DB         DB         `mapstructure:"db"`
+	Server        Server        `mapstructure:"server"`
+	UserCenter    UserCenter    `mapstructure:"user-center"`
+	BlockchainAPI BlockchainAPI `mapstructure:"blockchain-api"`
+	DB            DB            `mapstructure:"db"`
 }
 
 var GlobalConfig *Config

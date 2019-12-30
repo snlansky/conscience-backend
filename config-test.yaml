@@ -5,6 +5,9 @@ user-center:
   private-url: http://default-user-center:8090
   public-url: http://default-user-center:8080
 
+blockchain-api:
+  url: http://default-blockchain-api:8080
+
 db:
   redis:
     uri: 127.0.0.1:6379

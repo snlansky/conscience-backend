@@ -1,7 +1,9 @@
 package server
 
 import (
+	"conscience-backend/bao"
 	"conscience-backend/config"
+	"conscience-backend/dao"
 	"conscience-backend/db"
 	"conscience-backend/http"
 	"conscience-backend/service"
@@ -28,6 +30,10 @@ func (s *Server) initialize() {
 	if err != nil {
 		panic(err)
 	}
+
+	dao.Init(db.DB)
+
+	bao.Init(config.GlobalConfig.BlockchainAPI)
 
 	service.Init()
 
