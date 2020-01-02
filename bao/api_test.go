@@ -33,7 +33,7 @@ import (
 
 */
 func TestBlockchainAPI_Invoke(t *testing.T) {
-	api := BlockchainAPI{url: "http://127.0.0.1:8080", network: "fabric"}
+	api := fabricAPI{url: "http://127.0.0.1:8080", network: "fabric"}
 
 	var args []interface{}
 	args = append(args, &model.FaceID{
@@ -52,7 +52,7 @@ func TestBlockchainAPI_Invoke(t *testing.T) {
 }
 
 func TestBlockchainAPI_Query(t *testing.T) {
-	api := BlockchainAPI{url: "http://127.0.0.1:8080", network: "fabric"}
+	api := fabricAPI{url: "http://127.0.0.1:8080", network: "fabric"}
 
 	var args []interface{}
 	response, err := api.Query("NUYLS59JP1C8HKQUTT5JVA", "meetingchain", "faceid", "FaceIDService.GetUser", args)

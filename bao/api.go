@@ -10,25 +10,24 @@ import (
 	"github.com/parnurzeal/gorequest"
 )
 
-var DefaultMeetingChain *MeetingChain
-var DefaultStudyChain *StudyChain
+type BlockchainAPI interface {
+	Invoke(accessToken, channel, contract, fn string, args []interface{}) (string, string, error)
+	Query(accessToken, channel, contract, fn string, args []interface{}) (string, error)
+}
 
-func Init(conf config.BlockchainAPI) {
-	api := &BlockchainAPI{
+func NewBlockchainAPI(conf config.BlockchainAPI) BlockchainAPI {
+	return &fabricAPI{
 		network: "fabric",
 		url:     conf.Url,
 	}
-
-	DefaultMeetingChain = NewMeetingChain(api)
-	DefaultStudyChain = NewStudyChain(api)
 }
 
-type BlockchainAPI struct {
+type fabricAPI struct {
 	network string
 	url     string
 }
 
-func (api *BlockchainAPI) request(content interface{}, invoke bool) (*model.BlockchainResponse, error) {
+func (api *fabricAPI) request(content interface{}, invoke bool) (*model.BlockchainResponse, error) {
 	request := gorequest.New()
 	var resp model.JsonResponse
 	var bcResponse model.BlockchainResponse
@@ -55,7 +54,7 @@ func (api *BlockchainAPI) request(content interface{}, invoke bool) (*model.Bloc
 	return &bcResponse, nil
 }
 
-func (api *BlockchainAPI) Invoke(accessToken, channel, contract, fn string, args []interface{}) (string, string, error) {
+func (api *fabricAPI) Invoke(accessToken, channel, contract, fn string, args []interface{}) (string, string, error) {
 	request := model.RequestInvokeOrQueryContractV2{
 		AccessToken: accessToken,
 		NetworkId:   api.network,
@@ -73,7 +72,7 @@ func (api *BlockchainAPI) Invoke(accessToken, channel, contract, fn string, args
 	}
 	return blockchainResponse.TxID, blockchainResponse.Response, err
 }
-func (api *BlockchainAPI) Query(accessToken, channel, contract, fn string, args []interface{}) (string, error) {
+func (api *fabricAPI) Query(accessToken, channel, contract, fn string, args []interface{}) (string, error) {
 	request := model.RequestInvokeOrQueryContractV2{
 		AccessToken: accessToken,
 		NetworkId:   api.network,

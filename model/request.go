@@ -13,3 +13,8 @@ type Args struct {
 	Method string        `json:"func_name" `
 	Params []interface{} `json:"params" `
 }
+
+type RequestRegisterFaceID struct {
+	AccessToken string `json:"access_token"`
+	FaceID
+}

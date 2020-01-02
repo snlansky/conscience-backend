@@ -2,6 +2,7 @@ package server
 
 import (
 	"conscience-backend/bao"
+	"conscience-backend/bao/meeting_chain"
 	"conscience-backend/config"
 	"conscience-backend/dao"
 	"conscience-backend/db"
@@ -33,7 +34,8 @@ func (s *Server) initialize() {
 
 	dao.Init(db.DB)
 
-	bao.Init(config.GlobalConfig.BlockchainAPI)
+	api := bao.NewBlockchainAPI(config.GlobalConfig.BlockchainAPI)
+	meeting_chain.Init(api)
 
 	service.Init()
 

@@ -23,7 +23,20 @@ func New() *Server {
 		api.GET("/ping", func(ctx *gin.Context) {
 			ctx.String(http.StatusOK, "pong")
 		})
+
+		api.POST("/:contract")
+
+		//contract := api.Group("/contract")
+		//{
+		//
+		//}
 	}
+	router.GET("/user/:name/*action", func(c *gin.Context) {
+		name := c.Param("name")
+		action := c.Param("action")
+		message := name + " is " + action
+		c.String(http.StatusOK, message)
+	})
 
 	return &Server{router: router}
 }
