@@ -24,19 +24,13 @@ func New() *Server {
 			ctx.String(http.StatusOK, "pong")
 		})
 
-		api.POST("/:contract")
+		api.POST("/meeting/registerFaceID", RegisterFaceID)
 
 		//contract := api.Group("/contract")
 		//{
 		//
 		//}
 	}
-	router.GET("/user/:name/*action", func(c *gin.Context) {
-		name := c.Param("name")
-		action := c.Param("action")
-		message := name + " is " + action
-		c.String(http.StatusOK, message)
-	})
 
 	return &Server{router: router}
 }
