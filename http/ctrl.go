@@ -12,7 +12,7 @@ import (
 
 const RequestParametersError = "请求参数错误"
 
-func RegisterFaceID(ctx *gin.Context){
+func RegisterFaceID(ctx *gin.Context) {
 	var req model.RequestRegisterFaceID
 
 	err := bindBody(ctx, &req)
@@ -24,14 +24,13 @@ func RegisterFaceID(ctx *gin.Context){
 
 	err = service.DefaultFaceIDService.RegisterFaceID(&req)
 	if err != nil {
-		logger.Errorf("client %s request invoke contact error: %v", ctx.ClientIP(), err)
+		logger.Errorf("client %s request register faceid error: %v", ctx.ClientIP(), err)
 		ctx.JSON(http.StatusOK, model.NewInternalServerErrorJsonResponse(err))
 		return
 	}
 
 	ctx.JSON(http.StatusOK, model.NewSuccessfulJsonResponse(""))
 }
-
 
 func bind(ctx *gin.Context, obj interface{}) error {
 	err := ctx.ShouldBind(obj)
