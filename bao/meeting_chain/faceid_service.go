@@ -63,7 +63,7 @@ func (s *FaceIDService) GetUser(accessToken string) (*model.RegisterUser, error)
 	return &u, err
 }
 
-func (s *FaceIDService) HistoryFaceIDs(accessToken string, id *model.HistoryFaceIDs) ([]*model.FaceID, error) {
+func (s *FaceIDService) HistoryFaceIDs(accessToken string, id *model.RequestFaceIDHistory) ([]*model.FaceID, error) {
 	var args []interface{}
 	args = append(args, id)
 	res, err := s.contract.Query(accessToken,

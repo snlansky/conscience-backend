@@ -13,42 +13,15 @@ func NewFaceIDService() *FaceIDService {
 }
 
 func (s *FaceIDService) RegisterFaceID(req *model.RequestRegisterFaceID) (string, error) {
-	id := &model.FaceID{
-		ID:         req.ID,
-		SourceType: req.SourceType,
-		SourceHash: req.SourceHash,
-		Algorithm:  req.Algorithm,
-		Labels:     req.Labels,
-		Metadata:   req.Metadata,
-		Timestamp:  req.Timestamp,
-	}
-	return meeting_chain.DefaultFaceIDService.RegisterFaceID(req.AccessToken, id)
+	return meeting_chain.DefaultFaceIDService.RegisterFaceID(req.AccessToken, &req.FaceID)
 }
 
 func (s *FaceIDService) RegisterCertificate(req *model.RequestRegisterCertificate) (string, error) {
-	id := &model.FaceID{
-		ID:         req.ID,
-		SourceType: req.SourceType,
-		SourceHash: req.SourceHash,
-		Algorithm:  req.Algorithm,
-		Labels:     req.Labels,
-		Metadata:   req.Metadata,
-		Timestamp:  req.Timestamp,
-	}
-	return meeting_chain.DefaultFaceIDService.RegisterCertificate(req.AccessToken, id)
+	return meeting_chain.DefaultFaceIDService.RegisterCertificate(req.AccessToken, &req.FaceID)
 }
 
 func (s *FaceIDService) Record(req *model.RequestRecord) (string, error) {
-	id := &model.FaceID{
-		ID:         req.ID,
-		SourceType: req.SourceType,
-		SourceHash: req.SourceHash,
-		Algorithm:  req.Algorithm,
-		Labels:     req.Labels,
-		Metadata:   req.Metadata,
-		Timestamp:  req.Timestamp,
-	}
-	return meeting_chain.DefaultFaceIDService.Record(req.AccessToken, id)
+	return meeting_chain.DefaultFaceIDService.Record(req.AccessToken, &req.FaceID)
 }
 
 func (s *FaceIDService) GetUser(req *model.RequestGetUser) (*model.RegisterUser, error) {
@@ -56,12 +29,5 @@ func (s *FaceIDService) GetUser(req *model.RequestGetUser) (*model.RegisterUser,
 }
 
 func (s *FaceIDService) HistoryFaceIDs(req *model.RequestHistoryFaceIDs) ([]*model.FaceID, error) {
-	id := &model.HistoryFaceIDs{
-		ID:        req.ID,
-		StartTime: req.StartTime,
-		EndTime:   req.EndTime,
-		Labels:    req.Labels,
-		Timestamp: req.Timestamp,
-	}
-	return meeting_chain.DefaultFaceIDService.HistoryFaceIDs(req.AccessToken, id)
+	return meeting_chain.DefaultFaceIDService.HistoryFaceIDs(req.AccessToken, &req.RequestFaceIDHistory)
 }

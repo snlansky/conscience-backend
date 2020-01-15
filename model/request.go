@@ -34,8 +34,6 @@ type RequestGetUser struct {
 }
 
 type RequestHistoryFaceIDs struct {
-	AccessToken string   `json:"access_token"`
-	StartTime   int64    `json:"start_time" ` // 查询开始时间
-	EndTime     int64    `json:"end_time" `   // 查询结束时间
-	Labels      []string `json:"labels" `     // 标签
+	AccessToken string `json:"access_token"`
+	RequestFaceIDHistory
 }
