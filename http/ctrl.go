@@ -78,7 +78,7 @@ func record(ctx *gin.Context) {
 func getUser(ctx *gin.Context) {
 	var req model.RequestGetUser
 
-	err := bindBody(ctx, &req)
+	err := bindQuery(ctx, &req)
 	if err != nil {
 		logger.Errorf("client %s request parameters error:%v", ctx.ClientIP(), err)
 		ctx.String(http.StatusBadRequest, RequestParametersError)
