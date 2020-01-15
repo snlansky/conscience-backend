@@ -26,6 +26,14 @@ func New() *Server {
 
 		api.POST("/meeting/registerFaceID", RegisterFaceID)
 
+		api.POST("/meeting/registerCertificate", RegisterCertificate)
+
+		api.POST("/meeting/record", Record)
+
+		api.POST("/meeting/getUser", GetUser)
+
+		api.POST("/meeting/historyFaceIDs", HistoryFaceIDs)
+
 		//contract := api.Group("/contract")
 		//{
 		//
