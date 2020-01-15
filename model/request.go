@@ -18,3 +18,22 @@ type RequestRegisterFaceID struct {
 	AccessToken string `json:"access_token"`
 	FaceID
 }
+
+type RequestRegisterCertificate struct {
+	AccessToken string `json:"access_token"`
+	FaceID
+}
+
+type RequestRecord struct {
+	AccessToken string `json:"access_token"`
+	FaceID
+}
+
+type RequestGetUser struct {
+	AccessToken string `json:"access_token"`
+}
+
+type RequestHistoryFaceIDs struct {
+	AccessToken string `json:"access_token"`
+	HistoryFaceIDs
+}
