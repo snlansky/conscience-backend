@@ -24,20 +24,15 @@ func New() *Server {
 			ctx.String(http.StatusOK, "pong")
 		})
 
-		api.POST("/meeting/registerFaceID", RegisterFaceID)
+		api.POST("/meeting/registerFaceID", registerFaceID)
 
-		api.POST("/meeting/registerCertificate", RegisterCertificate)
+		api.POST("/meeting/registerCertificate", registerCertificate)
 
-		api.POST("/meeting/record", Record)
+		api.POST("/meeting/record", record)
 
-		api.POST("/meeting/getUser", GetUser)
+		api.GET("/meeting/getUser", getUser)
 
-		api.POST("/meeting/historyFaceIDs", HistoryFaceIDs)
-
-		//contract := api.Group("/contract")
-		//{
-		//
-		//}
+		api.POST("/meeting/historyFaceIDs", historyFaceIDs)
 	}
 
 	return &Server{router: router}

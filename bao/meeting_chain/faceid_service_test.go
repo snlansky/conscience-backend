@@ -4,6 +4,7 @@ import (
 	"conscience-backend/bao"
 	"conscience-backend/config"
 	"conscience-backend/model"
+	"fmt"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -21,6 +22,7 @@ func TestFaceIDService_RegisterFaceID(t *testing.T) {
 		Metadata:   nil,
 		Timestamp:  0,
 	}
-	err := faceIDService.RegisterFaceID("HGN4HCRENAWKPTSLH-8UDW", id)
+	txId, err := faceIDService.RegisterFaceID("HGN4HCRENAWKPTSLH-8UDW", id)
 	assert.NoError(t, err)
+	fmt.Println(txId)
 }

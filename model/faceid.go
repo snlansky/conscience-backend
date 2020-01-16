@@ -18,9 +18,13 @@ type HistoryFaceIDs struct {
 	Timestamp  int64                  `json:"timestamp"`    // 时间戳(s)
 }
 
-//type ContractList struct {
-//	ID         string                 `json:"id" `          // ID
-//	NetworkD   string                 `json:"network_id" `  // 网络类型
-//	Channel    string                 `json:"channel" `     // 通道
-//	Timestamp  int64                  `json:"timestamp"`    // 时间戳(s)
-//}
+type RegisterUser struct {
+	RegisterFaceID      *FaceID
+	RegisterCertificate *FaceID
+}
+
+type RequestFaceIDHistory struct {
+	StartTime int64    `json:"start_time" valid:"optional"` // 开始时间
+	EndTime   int64    `json:"end_time" valid:"required"`   // 结束时间
+	Labels    []string `json:"labels" valid:"optional"`     // 标签
+}

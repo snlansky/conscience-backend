@@ -30,10 +30,10 @@ type RequestRecord struct {
 }
 
 type RequestGetUser struct {
-	AccessToken string `json:"access_token"`
+	AccessToken string `json:"access_token" form:"access_token" valid:"required"`
 }
 
 type RequestHistoryFaceIDs struct {
 	AccessToken string `json:"access_token"`
-	HistoryFaceIDs
+	RequestFaceIDHistory
 }
