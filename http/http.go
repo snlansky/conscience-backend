@@ -30,10 +30,8 @@ func New() *Server {
 
 		api.POST("/meeting/record", record)
 
-		// TODO : GET
-		api.POST("/meeting/getUser", getUser)
+    api.GET("/meeting/getUser", getUser)
 
-		// TODO : GET
 		api.POST("/meeting/historyFaceIDs", historyFaceIDs)
 	}
 
